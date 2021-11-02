@@ -72,6 +72,7 @@ def aic_bic_anaysis():
     if len(models) > 0 and len(errors) > 0:
         st.header("Plot for AIC and BIC for different Models")
         chart_data = pd.DataFrame(temp, errors, columns=models)
+        st.table(chart_data)
         st.line_chart(chart_data, height=450)
     else:
         title = st.title("Welcome to Air Quality Result Analysis Web App")

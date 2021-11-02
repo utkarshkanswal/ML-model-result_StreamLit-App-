@@ -1,3 +1,4 @@
+from logging import error
 import streamlit as st
 from matplotlib import pyplot as plt
 import numpy as np
@@ -44,10 +45,10 @@ def r2_score():
         models.append("VARMA")
 
     errors = ['R2 Score']
-
     if len(models) > 0:
         st.header("Plot for R2 Score different Models")
         chart_data = pd.DataFrame(np.array(arr), models, columns=errors)
+        st.table(chart_data)
         st.line_chart(chart_data, height=450)
     else:
         title = st.title("Welcome to Air Quality Result Analysis Web App")
