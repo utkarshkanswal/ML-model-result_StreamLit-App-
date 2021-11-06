@@ -5,11 +5,15 @@ import numpy as np
 import pandas as pd
 import altair as alt
 
-xgboost_list = [0.8623226304872951]
-randomforest_list = [0.7157456297425531]
-var_list = [0.3600870655999349]
-vma_list = [0.36034097852264296]
-varmax_list = [0.36008704455714285]
+data_type = ['Test Data', 'Train Data']
+
+xgboost_list = [0.8623226304872951, 0.9426134014720243]
+randomforest_list = [0.7157456297425531, 0.7204765644279367]
+var_list = [0.3600870655999349, 0.33375415804112096]
+vma_list = [0.36034097852264296, 0.3339029193613109]
+varmax_list = [0.36008704455714285, 0.33375415451011453]
+knn_list = [0.8029100802530473, 0.8710465258994434]
+svm_list = [-47.4020930609896, -36.36515905532197]
 
 
 def r2_score():
@@ -20,6 +24,8 @@ def r2_score():
     select_model4 = st.sidebar.checkbox('Vector Moving Average')
     select_model5 = st.sidebar.checkbox(
         'Vector Auto Regression Moving Average')
+    select_model6 = st.sidebar.checkbox('K Nearest Neighbour')
+    select_model7 = st.sidebar.checkbox('Support Vector Machine')
 
     models = list()
     arr = list()
@@ -44,12 +50,20 @@ def r2_score():
         arr.append(varmax_list)
         models.append("VARMA")
 
-    errors = ['R2 Score']
+    if select_model6:
+        arr.append(knn_list)
+        models.append("KNN")
+
+    if select_model7:
+        arr.append(svm_list)
+        models.append("SVM")
+
+    errors = ['R2 Score on Test', 'R2 Score on Train']
     if len(models) > 0:
         st.header("Plot for R2 Score different Models")
         chart_data = pd.DataFrame(np.array(arr), models, columns=errors)
         st.table(chart_data)
-        st.line_chart(chart_data, height=450)
+        st.bar_chart(chart_data, height=450)
     else:
         title = st.title("Welcome to Air Quality Result Analysis Web App")
         st.markdown("Comparative analysis on dataset of different machine learning models  and find out the best model having more accurate predictions of air quality .")

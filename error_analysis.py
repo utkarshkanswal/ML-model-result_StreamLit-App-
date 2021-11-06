@@ -14,6 +14,8 @@ vma_list = [0.00012161140493576916, 0.007300713574989763,
             0.011027756115174526, -3623029.066632705, -3621935.986686591]
 varmax_list = [0.00012164231712440681, 0.007302540667162326,
                0.011029157589063945, -3622904.383916931, -3621361.2122283005]
+knn_list = [3.451732882457915e-05, 0.0018971251093713416, 0.005875145004557688]
+svm_list = [0.0050151326902311095, 0.06570361499714113, 0.07081760155661239]
 
 
 def error_anaysis():
@@ -24,7 +26,8 @@ def error_anaysis():
     select_model4 = st.sidebar.checkbox('Vector Moving Average')
     select_model5 = st.sidebar.checkbox(
         'Vector Auto Regression Moving Average')
-
+    select_model6 = st.sidebar.checkbox('K Nearest Neighbour')
+    select_model7 = st.sidebar.checkbox('Support Vector Machine')
     models = list()
 
     if select_model1:
@@ -41,6 +44,12 @@ def error_anaysis():
 
     if select_model5:
         models.append("VARMA")
+
+    if select_model6:
+        models.append("KNN")
+
+    if select_model7:
+        models.append("SVM")
 
     st.sidebar.subheader("Choose Value ?")
 
@@ -60,7 +69,6 @@ def error_anaysis():
         errors.append("RMSE")
 
     arr = list()
-    j = 0
     for m in models:
         l = list()
         for e in errors:
@@ -94,7 +102,18 @@ def error_anaysis():
                 l.append(varmax_list[1])
             if e == "RMSE" and m == "VARMA":
                 l.append(varmax_list[2])
-            j += 1
+            if e == "MSE" and m == "KNN":
+                l.append(knn_list[0])
+            if e == "MAE" and m == "KNN":
+                l.append(knn_list[1])
+            if e == "RMSE" and m == "KNN":
+                l.append(knn_list[2])
+            if e == "MSE" and m == "SVM":
+                l.append(svm_list[0])
+            if e == "MAE" and m == "SVM":
+                l.append(svm_list[1])
+            if e == "RMSE" and m == "SVM":
+                l.append(svm_list[2])
 
         arr.append(l)
 
