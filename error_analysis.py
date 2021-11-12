@@ -3,6 +3,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import pandas as pd
 import altair as alt
+import math
 
 xgboost_list = [0.00002285973898022485,
                 0.001955862053424563, 0.00478118593867932]
@@ -16,6 +17,7 @@ varmax_list = [0.00012164231712440681, 0.007302540667162326,
                0.011029157589063945, -3622904.383916931, -3621361.2122283005]
 knn_list = [3.451732882457915e-05, 0.0018971251093713416, 0.005875145004557688]
 svm_list = [0.0050151326902311095, 0.06570361499714113, 0.07081760155661239]
+lstm = [2.0402e-04, 0.0098, 0.0122]
 
 
 def error_anaysis():
@@ -28,6 +30,7 @@ def error_anaysis():
         'Vector Auto Regression Moving Average')
     select_model6 = st.sidebar.checkbox('K Nearest Neighbour')
     select_model7 = st.sidebar.checkbox('Support Vector Machine')
+    select_model8 = st.sidebar.checkbox('LSTM')
     models = list()
 
     if select_model1:
@@ -50,6 +53,9 @@ def error_anaysis():
 
     if select_model7:
         models.append("SVM")
+
+    if select_model8:
+        models.append("LSTM")
 
     st.sidebar.subheader("Choose Value ?")
 
@@ -114,6 +120,12 @@ def error_anaysis():
                 l.append(svm_list[1])
             if e == "RMSE" and m == "SVM":
                 l.append(svm_list[2])
+            if e == "MSE" and m == "LSTM":
+                l.append(lstm[0])
+            if e == "MAE" and m == "LSTM":
+                l.append(lstm[1])
+            if e == "RMSE" and m == "LSTM":
+                l.append(lstm[2])
 
         arr.append(l)
 

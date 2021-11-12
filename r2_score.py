@@ -14,6 +14,7 @@ vma_list = [0.36034097852264296, 0.3339029193613109]
 varmax_list = [0.36008704455714285, 0.33375415451011453]
 knn_list = [0.8029100802530473, 0.8710465258994434]
 svm_list = [-47.4020930609896, -36.36515905532197]
+lstm = [0.9267, 0.9241]
 
 
 def r2_score():
@@ -26,6 +27,7 @@ def r2_score():
         'Vector Auto Regression Moving Average')
     select_model6 = st.sidebar.checkbox('K Nearest Neighbour')
     select_model7 = st.sidebar.checkbox('Support Vector Machine')
+    select_model8 = st.sidebar.checkbox('LSTM')
 
     models = list()
     arr = list()
@@ -57,6 +59,10 @@ def r2_score():
     if select_model7:
         arr.append(svm_list)
         models.append("SVM")
+
+    if select_model8:
+        arr.append(lstm)
+        models.append("LSTM")
 
     errors = ['R2 Score on Test', 'R2 Score on Train']
     if len(models) > 0:
