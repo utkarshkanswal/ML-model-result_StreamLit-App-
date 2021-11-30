@@ -5,39 +5,17 @@ import pandas as pd
 import altair as alt
 import math
 
-xgboost_list = [9.53231e-06, 0.0008703509, 0.003087444]
-randomforest_list = [5.4943812238677005e-05,
-                     0.0021928648657524178, 0.0074124093410089685]
-linear_regression_list = [0.14759162, 0.0039615664, 0.38417655]
-Lasso_list = [0.00013819191, 0.0043099066, 0.011755506]
-knn_list = [4.8233207e-05, 0.0018312254, 0.006945013]
-svm_list = [0.0050151326902311095, 0.06570361499714113, 0.07081760155661239]
-lstm = [0.05459023267030716, 0.05129491165280342, 0.12296319007873535]
+xgboost_list = [0.0002003255664180864,
+                0.007388090488858885, 0.014153641454342638]
 
 
-def error_anaysis():
+def error_anaysispj():
     st.sidebar.subheader("Choose Model ?")
     select_model1 = st.sidebar.checkbox('Xgboost')
-    select_model2 = st.sidebar.checkbox('Random Forest')
-    select_model3 = st.sidebar.checkbox('Linear Regression')
-    select_model4 = st.sidebar.checkbox('Lasso')
-    select_model6 = st.sidebar.checkbox('K Nearest Neighbour')
     models = list()
 
     if select_model1:
         models.append("Xgboost")
-
-    if select_model2:
-        models.append("Random Forest")
-
-    if select_model3:
-        models.append("Linear Regression")
-
-    if select_model4:
-        models.append("Lasso")
-
-    if select_model6:
-        models.append("KNN")
 
     st.sidebar.subheader("Choose Value ?")
 
@@ -66,30 +44,6 @@ def error_anaysis():
                 l.append(xgboost_list[1])
             if e == "RMSE" and m == "Xgboost":
                 l.append(xgboost_list[2])
-            if e == "MSE" and m == "Random Forest":
-                l.append(randomforest_list[0])
-            if e == "MAE" and m == "Random Forest":
-                l.append(randomforest_list[1])
-            if e == "RMSE" and m == "Random Forest":
-                l.append(randomforest_list[2])
-            if e == "MSE" and m == "Linear Regression":
-                l.append(linear_regression_list[0])
-            if e == "MAE" and m == "Linear Regression":
-                l.append(linear_regression_list[1])
-            if e == "RMSE" and m == "Linear Regression":
-                l.append(linear_regression_list[2])
-            if e == "MSE" and m == "Lasso":
-                l.append(Lasso_list[0])
-            if e == "MAE" and m == "Lasso":
-                l.append(Lasso_list[1])
-            if e == "RMSE" and m == "Lasso":
-                l.append(Lasso_list[2])
-            if e == "MSE" and m == "KNN":
-                l.append(knn_list[0])
-            if e == "MAE" and m == "KNN":
-                l.append(knn_list[1])
-            if e == "RMSE" and m == "KNN":
-                l.append(knn_list[2])
 
         arr.append(l)
 
