@@ -10,7 +10,7 @@ particle = ['NO2', 'O3', 'NO', 'CO', 'PM1', 'PM2.5', 'PM10']
 
 def actual_vs_predicted():
     select_model = st.sidebar.radio(
-        "Choose Model ?", ('Xgboost', 'Randomforest', 'KNN'))
+        "Choose Model ?", ('Xgboost', 'Randomforest', 'KNN','Linear Regression','Lasso'))
 
     select_particle = st.sidebar.radio(
         "Choose Particle ?", ('NO2', 'O3', 'NO', 'CO', 'PM1', 'PM2.5', 'PM10'))
@@ -41,6 +41,12 @@ def actual_vs_predicted():
 
     if select_model == 'Randomforest':
         get_randomforest(loc)
+
+    if select_model=='Linear Regression':
+        get_linear_regression(loc)
+
+    if select_model=='Lasso':
+        get_lasso(loc)        
 
 
 def get_knn(loc):
@@ -157,3 +163,80 @@ def get_randomforest(loc):
         particle[loc]+' particle'
     )
     st.altair_chart(chart, use_container_width=True)
+
+
+def get_linear_regression(loc):
+    xgboost_y_test = loadtxt('Models/linearregression_y_test.csv', delimiter=',')
+    xgboost_y_test_pred = loadtxt(
+        'Models/linearregression_y_test_pred.csv', delimiter=',')
+    l1 = list()
+    l1.append(['Y_Actual']*n)
+    l1.append(np.round(xgboost_y_test[:n, loc], 9))
+    l1.append(list(range(1, n+1)))
+    temp1 = np.array(l1).transpose()
+    x1 = list(range(1, n+1))
+
+    chart_data1 = pd.DataFrame(temp1, x1, columns=['Data', particle[loc], 'X'])
+
+    l2 = list()
+    l2.append(['Y_Predicted']*n)
+    l2.append(np.round(xgboost_y_test_pred[:n, loc], 9))
+    l2.append(list(range(1, n+1)))
+    temp2 = np.array(l2).transpose()
+    x2 = list(range(n+1, 2*n+1))
+
+    chart_data2 = pd.DataFrame(temp2, x2, columns=['Data', particle[loc], 'X'])
+
+    frames = [chart_data1, chart_data2]
+
+    results = pd.concat(frames)
+
+    chart = alt.Chart(results.reset_index()).mark_line().encode(
+        x='X',
+        y=particle[loc],
+        color='Data',
+        strokeDash='Data',
+    ).properties(
+        title='Plot of Actual vs Predicted for Linear Regression model for ' +
+        particle[loc]+' particle'
+    )
+    st.altair_chart(chart, use_container_width=True)
+
+
+def get_lasso(loc):
+    xgboost_y_test = loadtxt('Models/lasso_y_test.csv', delimiter=',')
+    xgboost_y_test_pred = loadtxt(
+        'Models/lasso_y_test_pred.csv', delimiter=',')
+    l1 = list()
+    l1.append(['Y_Actual']*n)
+    l1.append(np.round(xgboost_y_test[:n, loc], 9))
+    l1.append(list(range(1, n+1)))
+    temp1 = np.array(l1).transpose()
+    x1 = list(range(1, n+1))
+
+    chart_data1 = pd.DataFrame(temp1, x1, columns=['Data', particle[loc], 'X'])
+
+    l2 = list()
+    l2.append(['Y_Predicted']*n)
+    l2.append(np.round(xgboost_y_test_pred[:n, loc], 9))
+    l2.append(list(range(1, n+1)))
+    temp2 = np.array(l2).transpose()
+    x2 = list(range(n+1, 2*n+1))
+
+    chart_data2 = pd.DataFrame(temp2, x2, columns=['Data', particle[loc], 'X'])
+
+    frames = [chart_data1, chart_data2]
+
+    results = pd.concat(frames)
+
+    chart = alt.Chart(results.reset_index()).mark_line().encode(
+        x='X',
+        y=particle[loc],
+        color='Data',
+        strokeDash='Data',
+    ).properties(
+        title='Plot of Actual vs Predicted for Lasso Regression model for ' +
+        particle[loc]+' particle'
+    )
+    st.altair_chart(chart, use_container_width=True)
+
