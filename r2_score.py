@@ -9,9 +9,8 @@ data_type = ['Test Data', 'Train Data']
 
 xgboost_list = [0.9310061554157045, 0.9315455074103038]
 randomforest_list = [0.6025078002605496, 0.6024441613305692]
-var_list = [0.3600870655999349, 0.33375415804112096]
-vma_list = [0.36034097852264296, 0.3339029193613109]
-varmax_list = [0.36008704455714285, 0.33375415451011453]
+Linear_regression_list = [-577.7316385657471,0.09500857284144938]
+Lasso_list = [0.12819541953125432,0.011271609923641084]
 knn_list = [0.650844072704262, 0.7456257407339981]
 svm_list = [-47.4020930609896, -36.36515905532197]
 lstm = [0.9267, 0.9241]
@@ -21,8 +20,8 @@ def r2_score():
     st.sidebar.subheader("Choose Model ?")
     select_model1 = st.sidebar.checkbox('Xgboost')
     select_model2 = st.sidebar.checkbox('Random Forest')
-    # select_model3 = st.sidebar.checkbox('Vector Auto Regression')
-    # select_model4 = st.sidebar.checkbox('Vector Moving Average')
+    select_model3 = st.sidebar.checkbox('Linear Regression')
+    select_model4 = st.sidebar.checkbox('Lasso')
     # select_model5 = st.sidebar.checkbox(
     #     'Vector Auto Regression Moving Average')
     select_model6 = st.sidebar.checkbox('K Nearest Neighbour')
@@ -40,17 +39,17 @@ def r2_score():
         arr.append(randomforest_list)
         models.append("Random Forest")
 
-    # if select_model3:
-    #     arr.append(var_list)
-    #     models.append("VAR")
+    if select_model3:
+        arr.append(Linear_regression_list)
+        models.append("Linear Regression")
 
-    # if select_model4:
-    #     arr.append(vma_list)
-    #     models.append("VMA")
+    if select_model4:
+        arr.append(Lasso_list)
+        models.append("Lasso")
 
     # if select_model5:
-    #     arr.append(varmax_list)
-    #     models.append("VARMA")
+    #     arr.append(Linear_regressionmax_list)
+    #     models.append("Linear_regressionMA")
 
     if select_model6:
         arr.append(knn_list)
