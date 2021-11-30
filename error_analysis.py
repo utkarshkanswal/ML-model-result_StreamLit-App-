@@ -5,17 +5,16 @@ import pandas as pd
 import altair as alt
 import math
 
-xgboost_list = [0.00002285973898022485,
-                0.001955862053424563, 0.00478118593867932]
-randomforest_list = [0.00005511369987097619,
-                     0.0040103400631165955, 0.007423860173183233]
+xgboost_list = [9.53231e-06, 0.0008703509, 0.003087444]
+randomforest_list = [5.4943812238677005e-05,
+                     0.0021928648657524178, 0.0074124093410089685]
 var_list = [0.00012164231497931546, 0.007302538086412745,
             0.011029157491817562, -3623002.3803782254, -3621909.3004321116]
 vma_list = [0.00012161140493576916, 0.007300713574989763,
             0.011027756115174526, -3623029.066632705, -3621935.986686591]
 varmax_list = [0.00012164231712440681, 0.007302540667162326,
                0.011029157589063945, -3622904.383916931, -3621361.2122283005]
-knn_list = [3.451732882457915e-05, 0.0018971251093713416, 0.005875145004557688]
+knn_list = [4.8233207e-05, 0.0018312254, 0.006945013]
 svm_list = [0.0050151326902311095, 0.06570361499714113, 0.07081760155661239]
 lstm = [2.0402e-04, 0.0098, 0.0122]
 
@@ -24,13 +23,13 @@ def error_anaysis():
     st.sidebar.subheader("Choose Model ?")
     select_model1 = st.sidebar.checkbox('Xgboost')
     select_model2 = st.sidebar.checkbox('Random Forest')
-    select_model3 = st.sidebar.checkbox('Vector Auto Regression')
-    select_model4 = st.sidebar.checkbox('Vector Moving Average')
-    select_model5 = st.sidebar.checkbox(
-        'Vector Auto Regression Moving Average')
+    # select_model3 = st.sidebar.checkbox('Vector Auto Regression')
+    # select_model4 = st.sidebar.checkbox('Vector Moving Average')
+    # select_model5 = st.sidebar.checkbox(
+    #     'Vector Auto Regression Moving Average')
     select_model6 = st.sidebar.checkbox('K Nearest Neighbour')
-    select_model7 = st.sidebar.checkbox('Support Vector Machine')
-    select_model8 = st.sidebar.checkbox('LSTM')
+    # select_model7 = st.sidebar.checkbox('Support Vector Machine')
+    # select_model8 = st.sidebar.checkbox('LSTM')
     models = list()
 
     if select_model1:
@@ -39,23 +38,23 @@ def error_anaysis():
     if select_model2:
         models.append("Random Forest")
 
-    if select_model3:
-        models.append("VAR")
+    # if select_model3:
+    #     models.append("VAR")
 
-    if select_model4:
-        models.append("VMA")
+    # if select_model4:
+    #     models.append("VMA")
 
-    if select_model5:
-        models.append("VARMA")
+    # if select_model5:
+    #     models.append("VARMA")
 
     if select_model6:
         models.append("KNN")
 
-    if select_model7:
-        models.append("SVM")
+    # if select_model7:
+    #     models.append("SVM")
 
-    if select_model8:
-        models.append("LSTM")
+    # if select_model8:
+    #     models.append("LSTM")
 
     st.sidebar.subheader("Choose Value ?")
 
