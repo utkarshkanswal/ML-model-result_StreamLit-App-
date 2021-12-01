@@ -7,15 +7,38 @@ import math
 
 xgboost_list = [0.0002003255664180864,
                 0.007388090488858885, 0.014153641454342638]
+knn_list = [0.0002061790700894036, 0.006902047365753544, 0.014358936941480159]
+linear_regression_list = [0.0005747420137439317,
+                          0.01391719554120551, 0.023973777627731757]
+lasso_list = [0.0008129141100830015, 0.01655494630161575, 0.028511648673533445]
+random_list = [0.00029808595786701435,
+               0.009558281283174914, 0.017265166024889953]
 
 
 def error_anaysispj():
     st.sidebar.subheader("Choose Model ?")
     select_model1 = st.sidebar.checkbox('Xgboost')
+    select_model2 = st.sidebar.checkbox('KNN')
+    select_model3 = st.sidebar.checkbox('Linear Regression')
+    select_model4 = st.sidebar.checkbox('Lasso')
+    select_model5 = st.sidebar.checkbox('Random Forest')
+
     models = list()
 
     if select_model1:
         models.append("Xgboost")
+
+    if select_model2:
+        models.append("KNN")
+
+    if select_model3:
+        models.append("Linear Regression")
+
+    if select_model4:
+        models.append("Lasso")
+
+    if select_model5:
+        models.append("Random Forest")
 
     st.sidebar.subheader("Choose Value ?")
 
@@ -44,6 +67,34 @@ def error_anaysispj():
                 l.append(xgboost_list[1])
             if e == "RMSE" and m == "Xgboost":
                 l.append(xgboost_list[2])
+
+            if e == "MSE" and m == "KNN":
+                l.append(knn_list[0])
+            if e == "MAE" and m == "KNN":
+                l.append(knn_list[1])
+            if e == "RMSE" and m == "KNN":
+                l.append(knn_list[2])
+
+            if e == "MSE" and m == "Linear Regression":
+                l.append(linear_regression_list[0])
+            if e == "MAE" and m == "Linear Regression":
+                l.append(linear_regression_list[1])
+            if e == "RMSE" and m == "Linear Regression":
+                l.append(linear_regression_list[2])
+
+            if e == "MSE" and m == "Lasso":
+                l.append(lasso_list[0])
+            if e == "MAE" and m == "Lasso":
+                l.append(lasso_list[1])
+            if e == "RMSE" and m == "Lasso":
+                l.append(lasso_list[2])
+
+            if e == "MSE" and m == "Random Forest":
+                l.append(random_list[0])
+            if e == "MAE" and m == "Random Forest":
+                l.append(random_list[1])
+            if e == "RMSE" and m == "Random Forest":
+                l.append(random_list[2])
 
         arr.append(l)
 
