@@ -9,8 +9,8 @@ data_type = ['Test Data', 'Train Data']
 
 xgboost_list = [0.9310061554157045, 0.9315455074103038]
 randomforest_list = [0.6025078002605496, 0.6024441613305692]
-Linear_regression_list = [-577.7316385657471,0.09500857284144938]
-Lasso_list = [0.12819541953125432,0.011271609923641084]
+Linear_regression_list = [-577.7316385657471, 0.09500857284144938]
+Lasso_list = [0.12819541953125432, 0.011271609923641084]
 knn_list = [0.650844072704262, 0.7456257407339981]
 svm_list = [-47.4020930609896, -36.36515905532197]
 lstm = [0.9267, 0.9241]
@@ -32,43 +32,42 @@ def r2_score():
     arr = list()
 
     if select_model1:
-        arr.append(xgboost_list)
-        models.append("Xgboost")
+        models.append(["Xgboost", xgboost_list[0], "Test Data"])
+        models.append(["Xgboost", xgboost_list[1], "Train Data"])
 
     if select_model2:
-        arr.append(randomforest_list)
-        models.append("Random Forest")
+        models.append(["Random Forest", randomforest_list[0], "Test Data"])
+        models.append(["Random Forest", randomforest_list[1], "Train Data"])
 
     if select_model3:
-        arr.append(Linear_regression_list)
-        models.append("Linear Regression")
+        models.append(["Linear Regression",
+                      Linear_regression_list[0], "Test Data"])
+        models.append(["Linear Regression",
+                      Linear_regression_list[1], "Train Data"])
 
     if select_model4:
-        arr.append(Lasso_list)
-        models.append("Lasso")
-
-    # if select_model5:
-    #     arr.append(Linear_regressionmax_list)
-    #     models.append("Linear_regressionMA")
+        models.append(["Lasso", Lasso_list[0], "Test Data"])
+        models.append(["Lasso", Lasso_list[1], "Train Data"])
 
     if select_model6:
-        arr.append(knn_list)
-        models.append("KNN")
-
-    # if select_model7:
-    #     arr.append(svm_list)
-    #     models.append("SVM")
-
-    # if select_model8:
-    #     arr.append(lstm)
-    #     models.append("LSTM")
+        models.append(["KNN", knn_list[0], "Test Data"])
+        models.append(["KNN", knn_list[1], "Train Data"])
 
     errors = ['R2 Score on Test', 'R2 Score on Train']
     if len(models) > 0:
         st.header("Plot for R2 Score different Models")
-        chart_data = pd.DataFrame(np.array(arr), models, columns=errors)
+        x = list(range(0, len(models)))
+        chart_data = pd.DataFrame(
+            models, x, columns=['Models', 'R2 Score', 'Data Type'])
+        chart_data
         st.table(chart_data)
-        st.bar_chart(chart_data, height=450)
+        chart = alt.Chart(chart_data).mark_bar().encode(
+            x='Data Type:O',
+            y='R2 Score:Q',
+            color='Data Type:N',
+            column='Models:N'
+        )
+        st.altair_chart(chart)
     else:
         title = st.title("Welcome to Air Quality Result Analysis Web App")
         st.markdown("Comparative analysis on dataset of different machine learning models  and find out the best model having more accurate predictions of air quality .")
