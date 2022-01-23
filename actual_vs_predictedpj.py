@@ -13,7 +13,7 @@ def actual_vs_predictedpj():
         "Choose Model ?", ('Xgboost', 'Randomforest', 'KNN', 'Linear Regression', 'Lasso'))
 
     select_particle = st.sidebar.radio(
-        "Choose Particle ?", ('NO2', 'O3', 'NO', 'CO', 'PM1', 'PM2.5', 'PM10'))
+        "Choose Particle ?", ('NO2', 'O3', 'NO', 'CO', 'PM2.5', 'PM10'))
 
     if select_particle == 'NO2':
         loc = 0
@@ -25,14 +25,14 @@ def actual_vs_predictedpj():
     if select_particle == 'CO':
         loc = 3
 
-    if select_particle == 'PM1':
-        loc = 4
+    # if select_particle == 'PM1':
+    #     loc = 4
 
     if select_particle == 'PM2.5':
-        loc = 5
+        loc = 4
 
     if select_particle == 'PM10':
-        loc = 6
+        loc = 5
 
     if select_model == 'Xgboost':
         get_xgboost(loc)
