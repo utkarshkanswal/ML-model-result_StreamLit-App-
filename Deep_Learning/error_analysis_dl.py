@@ -6,15 +6,26 @@ import altair as alt
 import math
 
 lstm = [0.05459023267030716, 0.05129491165280342, 0.12296319007873535]
+cnn=[0.00012385364971123636,0.004055249970406294,0.006716000847518444]
+gru=[0.0006562928319908679,0.012329255230724812,0.02341914176940918]
 
 
 def error_anaysis_dl():
     st.sidebar.subheader("Choose Model ?")
     select_model1 = st.sidebar.checkbox('LSTM')
+    select_model2 = st.sidebar.checkbox('GRU')
+    select_model3 = st.sidebar.checkbox('CNN')
+
     models = list()
 
     if select_model1:
         models.append("LSTM")
+
+    if select_model2:
+        models.append("GRU")
+
+    if select_model3:
+        models.append("CNN")        
 
     st.sidebar.subheader("Choose Value ?")
 
@@ -43,6 +54,21 @@ def error_anaysis_dl():
                 l.append(lstm[1])
             if e == "RMSE" and m == "LSTM":
                 l.append(lstm[2])
+
+            if e == "MSE" and m == "GRU":
+                l.append(gru[0])
+            if e == "MAE" and m == "GRU":
+                l.append(gru[1])
+            if e == "RMSE" and m == "GRU":
+                l.append(gru[2])   
+
+
+            if e == "MSE" and m == "CNN":
+                l.append(cnn[0])
+            if e == "MAE" and m == "CNN":
+                l.append(cnn[1])
+            if e == "RMSE" and m == "CNN":
+                l.append(cnn[2])     
 
         arr.append(l)
 

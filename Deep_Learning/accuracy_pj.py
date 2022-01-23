@@ -8,11 +8,15 @@ import altair as alt
 data_type = ['Test Data', 'Train Data']
 
 lstm = [0.4751, 0.4733]
+gru=[0.8608734607696533,0.8616863489151001]
+cnn=[0.9970065355300903,0.9969671964645386]
 
 
 def accuracy_pj():
     st.sidebar.subheader("Choose Model ?")
     select_model1 = st.sidebar.checkbox('LSTM')
+    select_model2 = st.sidebar.checkbox('GRU')
+    select_model3 = st.sidebar.checkbox('CNN')
 
     models = list()
     arr = list()
@@ -20,6 +24,14 @@ def accuracy_pj():
     if select_model1:
         arr.append(lstm)
         models.append("LSTM")
+
+    if select_model2:
+        arr.append(gru) 
+        models.append("GRU")
+
+    if select_model3:
+        arr.append(cnn)
+        models.append("CNN")  
 
     errors = ['Accuracy on Test Data', 'Accuracy on Train Data']
     if len(models) > 0:

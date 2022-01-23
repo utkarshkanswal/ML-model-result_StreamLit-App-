@@ -8,11 +8,14 @@ import altair as alt
 data_type = ['Test Data', 'Train Data']
 
 lstm = [0.0212, 0.0253]
-
+gru=[0.2249,0.2241]
+cnn=[0.9434844255447388,0.9438334107398987]
 
 def accuracy():
     st.sidebar.subheader("Choose Model ?")
     select_model1 = st.sidebar.checkbox('LSTM')
+    select_model2 = st.sidebar.checkbox('GRU')
+    select_model3 = st.sidebar.checkbox('CNN')
 
     models = list()
     arr = list()
@@ -20,6 +23,14 @@ def accuracy():
     if select_model1:
         arr.append(lstm)
         models.append("LSTM")
+
+    if select_model2:
+        arr.append(gru) 
+        models.append("GRU")
+
+    if select_model3:
+        arr.append(cnn)
+        models.append("CNN")       
 
     errors = ['Accuracy on Test Data', 'Accuracy on Train Data']
     if len(models) > 0:

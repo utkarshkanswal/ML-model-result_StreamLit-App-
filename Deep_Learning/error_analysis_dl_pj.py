@@ -6,15 +6,25 @@ import altair as alt
 import math
 
 lstm = [0.0645, 0.1585, 0.2383]
-
+gru=[0.012723429128527641,0.049209967255592346,0.07397405803203583]
+cnn=[0.033225543797016144,0.14912758767604828,0.1787092387676239]
 
 def error_anaysis_dl_pj():
     st.sidebar.subheader("Choose Model ?")
     select_model1 = st.sidebar.checkbox('LSTM')
+    select_model2 = st.sidebar.checkbox('GRU')
+    select_model3 = st.sidebar.checkbox('CNN')
+
     models = list()
 
     if select_model1:
         models.append("LSTM")
+
+    if select_model2:
+        models.append("GRU")
+
+    if select_model3:
+        models.append("CNN")        
 
     st.sidebar.subheader("Choose Value ?")
 
@@ -43,6 +53,21 @@ def error_anaysis_dl_pj():
                 l.append(lstm[1])
             if e == "RMSE" and m == "LSTM":
                 l.append(lstm[2])
+
+            if e == "MSE" and m == "GRU":
+                l.append(gru[0])
+            if e == "MAE" and m == "GRU":
+                l.append(gru[1])
+            if e == "RMSE" and m == "GRU":
+                l.append(gru[2])   
+
+
+            if e == "MSE" and m == "CNN":
+                l.append(cnn[0])
+            if e == "MAE" and m == "CNN":
+                l.append(cnn[1])
+            if e == "RMSE" and m == "CNN":
+                l.append(cnn[2])  
 
         arr.append(l)
 
