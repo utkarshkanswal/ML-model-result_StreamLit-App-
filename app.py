@@ -4,19 +4,18 @@ import numpy as np
 import pandas as pd
 import altair as alt
 from streamlit.type_util import is_sympy_expession
-from error_analysis import error_anaysis
-from r2_score import r2_score
-from aic_bic import aic_bic_anaysis
-from Deep_Learning.error_analysis_dl import error_anaysis_dl
-from Deep_Learning.accuracy import accuracy
-from actual_vs_predicted import actual_vs_predicted
-from error_analysispj import error_anaysispj
-from Deep_Learning.actual_vs_predicted_dl import actual_vs_predicteddl
-from r2_scorepj import r2_scorepj
-from actual_vs_predictedpj import actual_vs_predictedpj
-from Deep_Learning.accuracy_pj import accuracy_pj
-from Deep_Learning.actual_vs_predicted_dl_pj import actual_vs_predicteddl_pj
-from Deep_Learning.error_analysis_dl_pj import error_anaysis_dl_pj
+from OPC_Sensor.Machine_Learning.error_analysis import error_anaysis
+from OPC_Sensor.Machine_Learning.r2_score import r2_score
+from OPC_Sensor.Deep_Learning.error_analysis_dl import error_anaysis_dl
+from OPC_Sensor.Deep_Learning.accuracy import accuracy
+from OPC_Sensor.Machine_Learning.actual_vs_predicted import actual_vs_predicted
+from PJ_Sensor.Machine_Learning.error_analysispj import error_anaysispj
+from OPC_Sensor.Deep_Learning.actual_vs_predicted_dl import actual_vs_predicteddl
+from PJ_Sensor.Machine_Learning.r2_scorepj import r2_scorepj
+from PJ_Sensor.Machine_Learning.actual_vs_predictedpj import actual_vs_predictedpj
+from PJ_Sensor.Deep_Learning.accuracy_pj import accuracy_pj
+from PJ_Sensor.Deep_Learning.actual_vs_predicted_dl_pj import actual_vs_predicteddl_pj
+from PJ_Sensor.Deep_Learning.error_analysis_dl_pj import error_anaysis_dl_pj
 
 data_set = st.sidebar.radio('Choose Data Set ?', ('OPC Sensor', 'PJ Sensor'))
 

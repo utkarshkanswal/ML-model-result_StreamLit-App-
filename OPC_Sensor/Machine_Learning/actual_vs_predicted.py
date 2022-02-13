@@ -51,8 +51,8 @@ def actual_vs_predicted():
 
 def get_knn(loc):
 
-    knn_y_test = loadtxt('Models/knn_y_test.csv', delimiter=',')
-    knn_y_test_pred = loadtxt('Models/knn_y_test_pred.csv', delimiter=',')
+    knn_y_test = loadtxt('Models_OPC/knn_y_test.csv', delimiter=',')
+    knn_y_test_pred = loadtxt('Models_OPC/knn_y_test_pred.csv', delimiter=',')
     l1 = list()
     l1.append(['Y_Actual']*n)
     l1.append(np.round(knn_y_test[:n, loc], 9))
@@ -89,9 +89,9 @@ def get_knn(loc):
 
 def get_xgboost(loc):
 
-    xgboost_y_test = loadtxt('Models/xgboost_y_test.csv', delimiter=',')
+    xgboost_y_test = loadtxt('Models_OPC/xgboost_y_test.csv', delimiter=',')
     xgboost_y_test_pred = loadtxt(
-        'Models/xgboost_y_test_pred.csv', delimiter=',')
+        'Models_OPC/xgboost_y_test_pred.csv', delimiter=',')
     l1 = list()
     l1.append(['Y_Actual']*n)
     l1.append(np.round(xgboost_y_test[:n, loc], 9))
@@ -128,9 +128,9 @@ def get_xgboost(loc):
 
 def get_randomforest(loc):
 
-    xgboost_y_test = loadtxt('Models/randomforest_y_test.csv', delimiter=',')
+    xgboost_y_test = loadtxt('Models_OPC/randomforest_y_test.csv', delimiter=',')
     xgboost_y_test_pred = loadtxt(
-        'Models/randomforest_y_test_pred.csv', delimiter=',')
+        'Models_OPC/randomforest_y_test_pred.csv', delimiter=',')
     l1 = list()
     l1.append(['Y_Actual']*n)
     l1.append(np.round(xgboost_y_test[:n, loc], 9))
@@ -166,9 +166,9 @@ def get_randomforest(loc):
 
 
 def get_linear_regression(loc):
-    xgboost_y_test = loadtxt('Models/linearregression_y_test.csv', delimiter=',')
+    xgboost_y_test = loadtxt('Models_OPC/linearregression_y_test.csv', delimiter=',')
     xgboost_y_test_pred = loadtxt(
-        'Models/linearregression_y_test_pred.csv', delimiter=',')
+        'Models_OPC/linearregression_y_test_pred.csv', delimiter=',')
     l1 = list()
     l1.append(['Y_Actual']*n)
     l1.append(np.round(xgboost_y_test[:n, loc], 9))
@@ -204,9 +204,9 @@ def get_linear_regression(loc):
 
 
 def get_lasso(loc):
-    xgboost_y_test = loadtxt('Models/lasso_y_test.csv', delimiter=',')
+    xgboost_y_test = loadtxt('Models_OPC/lasso_y_test.csv', delimiter=',')
     xgboost_y_test_pred = loadtxt(
-        'Models/lasso_y_test_pred.csv', delimiter=',')
+        'Models_OPC/lasso_y_test_pred.csv', delimiter=',')
     l1 = list()
     l1.append(['Y_Actual']*n)
     l1.append(np.round(xgboost_y_test[:n, loc], 9))

@@ -44,9 +44,9 @@ def actual_vs_predicteddl():
 
 
 def get_lstm(loc):
-    lstm_y_test = loadtxt('Models/lstm_y_test.csv', delimiter=',')
+    lstm_y_test = loadtxt('Models_OPC/lstm_y_test.csv', delimiter=',')
     lstm_y_test_pred = loadtxt(
-        'Models/lstm_y_test_pred.csv', delimiter=',')
+        'Models_OPC/lstm_y_test_pred.csv', delimiter=',')
     l1 = list()
     l1.append(['Y_Actual']*n)
     l1.append(np.round(lstm_y_test[:n, loc], 9))
@@ -82,9 +82,9 @@ def get_lstm(loc):
 
 
 def get_gru(loc):
-    lstm_y_test = loadtxt('Models/gru_y_test.csv', delimiter=',')
+    lstm_y_test = loadtxt('Models_OPC/gru_y_test.csv', delimiter=',')
     lstm_y_test_pred = loadtxt(
-        'Models/gru_y_test_pred.csv', delimiter=',')
+        'Models_OPC/gru_y_test_pred.csv', delimiter=',')
     l1 = list()
     l1.append(['Y_Actual']*n)
     l1.append(np.round(lstm_y_test[:n, loc], 9))
@@ -119,9 +119,9 @@ def get_gru(loc):
     st.altair_chart(chart, use_container_width=True)
 
 def get_cnn(loc):
-    lstm_y_test = loadtxt('Models/cnn_y_test.csv', delimiter=',')
+    lstm_y_test = loadtxt('Models_OPC/cnn_y_test.csv', delimiter=',')
     lstm_y_test_pred = loadtxt(
-        'Models/cnn_y_test_pred.csv', delimiter=',')
+        'Models_OPC/cnn_y_test_pred.csv', delimiter=',')
     l1 = list()
     l1.append(['Y_Actual']*n)
     l1.append(np.round(lstm_y_test[:n, loc], 9))

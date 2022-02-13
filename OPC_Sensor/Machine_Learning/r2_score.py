@@ -22,11 +22,7 @@ def r2_score():
     select_model2 = st.sidebar.checkbox('Random Forest')
     select_model3 = st.sidebar.checkbox('Linear Regression')
     select_model4 = st.sidebar.checkbox('Lasso')
-    # select_model5 = st.sidebar.checkbox(
-    #     'Vector Auto Regression Moving Average')
     select_model6 = st.sidebar.checkbox('K Nearest Neighbour')
-    # select_model7 = st.sidebar.checkbox('Support Vector Machine')
-    # select_model8 = st.sidebar.checkbox('LSTM')
 
     models = list()
     arr = list()
