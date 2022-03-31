@@ -6,6 +6,7 @@ import altair as alt
 n = 25
 
 particle = ['NO2', 'O3', 'NO', 'CO', 'PM1', 'PM2.5', 'PM10']
+particle_loc = ['NO2', 'O3', 'NO', 'CO', 'PM1', 'PM2', 'PM10']
 
 
 def actual_vs_predicted():
@@ -50,34 +51,19 @@ def actual_vs_predicted():
 
 
 def get_knn(loc):
+    knn_y_test = pd.read_excel('Models_OPC/knn_y_test.xlsx')
+    knn_y_test_pred = pd.read_excel('Models_OPC/knn_y_test_pred.xlsx')
+    knn_y_test=knn_y_test[['DATE',particle_loc[loc],'Data']]
+    knn_y_test_pred=knn_y_test_pred[['DATE',particle_loc[loc],'Data']]
 
-    knn_y_test = loadtxt('Models_OPC/knn_y_test.csv', delimiter=',')
-    knn_y_test_pred = loadtxt('Models_OPC/knn_y_test_pred.csv', delimiter=',')
-    l1 = list()
-    l1.append(['Y_Actual']*n)
-    l1.append(np.round(knn_y_test[:n, loc], 9))
-    l1.append(list(range(1, n+1)))
-    temp1 = np.array(l1).transpose()
-    x1 = list(range(1, n+1))
-
-    chart_data1 = pd.DataFrame(temp1, x1, columns=['Data', particle[loc], 'x'])
-
-    l2 = list()
-    l2.append(['Y_Predicted']*n)
-    l2.append(np.round(knn_y_test_pred[:n, loc], 9))
-    l2.append(list(range(1, n+1)))
-    temp2 = np.array(l2).transpose()
-    x2 = list(range(n+1, 2*n+1))
-
-    chart_data2 = pd.DataFrame(temp2, x2, columns=['Data', particle[loc], 'x'])
-
-    frames = [chart_data1, chart_data2]
+    frames = [knn_y_test,knn_y_test_pred]
 
     results = pd.concat(frames)
+    st.dataframe=frames
 
-    chart = alt.Chart(results).mark_line().encode(
-        x='x',
-        y=particle[loc],
+    chart = alt.Chart(results.reset_index()).mark_line().encode(
+        x='DATE',
+        y=particle_loc[loc],
         color='Data',
         strokeDash='Data',
     ).properties(
@@ -88,35 +74,19 @@ def get_knn(loc):
 
 
 def get_xgboost(loc):
+    xgboost_y_test = pd.read_excel('Models_OPC/xgboost_y_test.xlsx')
+    xgboost_y_test_pred = pd.read_excel('Models_OPC/xgboost_y_test_pred.xlsx')
+    xgboost_y_test=xgboost_y_test[['DATE',particle_loc[loc],'Data']]
+    xgboost_y_test_pred=xgboost_y_test_pred[['DATE',particle_loc[loc],'Data']]
 
-    xgboost_y_test = loadtxt('Models_OPC/xgboost_y_test.csv', delimiter=',')
-    xgboost_y_test_pred = loadtxt(
-        'Models_OPC/xgboost_y_test_pred.csv', delimiter=',')
-    l1 = list()
-    l1.append(['Y_Actual']*n)
-    l1.append(np.round(xgboost_y_test[:n, loc], 9))
-    l1.append(list(range(1, n+1)))
-    temp1 = np.array(l1).transpose()
-    x1 = list(range(1, n+1))
-
-    chart_data1 = pd.DataFrame(temp1, x1, columns=['Data', particle[loc], 'X'])
-
-    l2 = list()
-    l2.append(['Y_Predicted']*n)
-    l2.append(np.round(xgboost_y_test_pred[:n, loc], 9))
-    l2.append(list(range(1, n+1)))
-    temp2 = np.array(l2).transpose()
-    x2 = list(range(n+1, 2*n+1))
-
-    chart_data2 = pd.DataFrame(temp2, x2, columns=['Data', particle[loc], 'X'])
-
-    frames = [chart_data1, chart_data2]
+    frames = [xgboost_y_test,xgboost_y_test_pred]
 
     results = pd.concat(frames)
+    st.dataframe=frames
 
     chart = alt.Chart(results.reset_index()).mark_line().encode(
-        x='X',
-        y=particle[loc],
+        x='DATE',
+        y=particle_loc[loc],
         color='Data',
         strokeDash='Data',
     ).properties(
@@ -127,35 +97,19 @@ def get_xgboost(loc):
 
 
 def get_randomforest(loc):
+    randomforest_y_test = pd.read_excel('Models_OPC/randomforest_y_test.xlsx')
+    randomforest_y_test_pred = pd.read_excel('Models_OPC/randomforest_y_test_pred.xlsx')
+    randomforest_y_test=randomforest_y_test[['DATE',particle_loc[loc],'Data']]
+    randomforest_y_test_pred=randomforest_y_test_pred[['DATE',particle_loc[loc],'Data']]
 
-    xgboost_y_test = loadtxt('Models_OPC/randomforest_y_test.csv', delimiter=',')
-    xgboost_y_test_pred = loadtxt(
-        'Models_OPC/randomforest_y_test_pred.csv', delimiter=',')
-    l1 = list()
-    l1.append(['Y_Actual']*n)
-    l1.append(np.round(xgboost_y_test[:n, loc], 9))
-    l1.append(list(range(1, n+1)))
-    temp1 = np.array(l1).transpose()
-    x1 = list(range(1, n+1))
-
-    chart_data1 = pd.DataFrame(temp1, x1, columns=['Data', particle[loc], 'X'])
-
-    l2 = list()
-    l2.append(['Y_Predicted']*n)
-    l2.append(np.round(xgboost_y_test_pred[:n, loc], 9))
-    l2.append(list(range(1, n+1)))
-    temp2 = np.array(l2).transpose()
-    x2 = list(range(n+1, 2*n+1))
-
-    chart_data2 = pd.DataFrame(temp2, x2, columns=['Data', particle[loc], 'X'])
-
-    frames = [chart_data1, chart_data2]
+    frames = [randomforest_y_test,randomforest_y_test_pred]
 
     results = pd.concat(frames)
+    st.dataframe=frames
 
     chart = alt.Chart(results.reset_index()).mark_line().encode(
-        x='X',
-        y=particle[loc],
+        x='DATE',
+        y=particle_loc[loc],
         color='Data',
         strokeDash='Data',
     ).properties(
